@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.sys_newwelcome.mapper.SysUserMapper">
+
+    <!-- 根据userId查询menuId -->
+    <select id="getNavMenuIds" resultType="java.lang.Long">
+        select
+            distinct rm.menu_id
+        from
+            sys_user_role ur
+                left join sys_role_menu rm on ur.role_id = rm.role_id
+        where ur.user_id = #{userId}
+    </select>
+
+
+    <!-- 根据菜单权限查询拥有该菜单权限的用户的信息 -->
+    <select id="listByMenuId" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.*
+        from sys_user_role sur
+                 left join sys_role_menu rm on sur.role_id = rm.role_id
+                 left join sys_user su on sur.user_id = su.id
+        where rm.menu_id = #{menuId}
+    </select>
+
+    <!-- 根据学院获取id对应的角色信息 -->
+    <select id="getByUserIds" resultType="java.lang.Integer">
+        select count(*) from sys_report sr
+            join sys_user su on sr.user_id = su.id
+        where su.institute = #{institute}
+    </select>
+
+    <!-- 根据学院和班级来获取id对应的角色信息 -->
+    <select id="getByUserIds2" resultType="java.lang.Integer">
+        select count(*) from sys_report sr
+            join sys_user su on sr.user_id = su.id
+        where su.institute = #{institute} and su.class_number = #{classNumber}
+    </select>
+
+
+
+
+    <!-- 根据学院来获取id对应的角色信息(缴费通过) -->
+    <select id="getByPassPaymentInstitute" resultType="java.lang.Integer">
+        select count(*) from sys_payment sr
+            join sys_user su on sr.user_id = su.id
+        where su.institute = #{institute} and sr.statu = 2
+    </select>
+
+    <!-- 根据学院来获取id对应的角色信息(缴费审核中) -->
+    <select id="getByReviewPaymentInstitute" resultType="java.lang.Integer">
+        select count(*) from sys_payment sr
+            join sys_user su on sr.user_id = su.id
+        where su.institute = #{institute} and sr.statu = 1
+    </select>
+
+
+
+    <!-- 根据学院和班级来获取id对应的角色信息(缴费通过) -->
+    <select id="getByPassPaymentClassNumber" resultType="java.lang.Integer">
+        select count(*) from sys_payment sr
+            join sys_user su on sr.user_id = su.id
+        where su.institute = #{institute} and su.class_number = #{classNumber} and sr.statu = 2
+    </select>
+
+    <!-- 根据学院和班级来获取id对应的角色信息(缴费审核中) -->
+    <select id="getByReviewPaymentClassNumber" resultType="java.lang.Integer">
+        select count(*) from sys_payment sr
+            join sys_user su on sr.user_id = su.id
+        where su.institute = #{institute} and su.class_number = #{classNumber} and sr.statu = 1
+    </select>
+
+
+
+
+
+    <!-- 根据学院来获取id对应的角色信息(绿色通道申请审核通过) -->
+    <select id="getByPassChannelInstitute" resultType="java.lang.Integer">
+        select count(*) from sys_channel sr
+            join sys_user su on sr.user_id = su.id
+        where su.institute = #{institute} and sr.statu = 2
+    </select>
+
+    <!-- 根据学院来获取id对应的角色信息(绿色通道申请审核中) -->
+    <select id="getByReviewChannelInstitute" resultType="java.lang.Integer">
+        select count(*) from sys_channel sr
+            join sys_user su on sr.user_id = su.id
+        where su.institute = #{institute} and sr.statu = 1
+    </select>
+
+    <!-- 根据学院和班级来获取id对应的角色信息(绿色通道申请通过) -->
+    <select id="getByPassChannelClassNumber" resultType="java.lang.Integer">
+        select count(*) from sys_channel sr
+            join sys_user su on sr.user_id = su.id
+        where su.institute = #{institute} and su.class_number = #{classNumber} and sr.statu = 2
+    </select>
+
+    <!-- 根据学院和班级来获取id对应的角色信息(绿色通道申请审核中) -->
+    <select id="getByReviewChannelClassNumber" resultType="java.lang.Integer">
+        select count(*) from sys_channel sr
+            join sys_user su on sr.user_id = su.id
+        where su.institute = #{institute} and su.class_number = #{classNumber} and sr.statu = 1
+    </select>
+
+
+    <!-- 导出信息  -->
+    <!-- -->
+    <!-- SysReport对应SysUser -->
+    <select id="getUserByReport" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.* from sys_report sr
+            join sys_user su on sr.user_id = su.id
+    </select>
+
+    <!-- 未报到学生 -->
+    <select id="getNotUserByReport" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.*
+        from sys_user su
+            left join sys_report sr on su.id = sr.user_id
+        where (sr.user_id is null or sr.statu not in (1)) and su.duties = '学生';
+    </select>
+
+    <!-- 未报到学生(学院) -->
+    <select id="getNotUserByReportInstitute" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.*
+        from sys_user su
+            left join sys_report sr on su.id = sr.user_id
+        where (sr.user_id is null or sr.statu not in (1)) and su.duties = '学生' and su.institute = #{institute}
+    </select>
+
+    <!-- 未报到学生(班级) -->
+    <select id="getNotUserByReportClassNumber" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.*
+        from sys_user su
+            left join sys_report sr on su.id = sr.user_id
+        where (sr.user_id is null or sr.statu not in (1)) and su.duties = '学生' and su.institute = #{institute} and su.class_number = #{classNumber}
+    </select>
+
+    <!-- 根据学院获取 -->
+    <select id="getUserByReportInstitute" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.* from sys_report sr
+            join sys_user su on sr.user_id = su.id
+        where su.institute = #{institute}
+    </select>
+
+    <!-- 根据班级获取 -->
+    <select id="getUserByReportClassNumber" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.* from sys_report sr
+            join sys_user su on sr.user_id = su.id
+        where su.institute = #{institute} and su.class_number = #{classNumber}
+    </select>
+
+    <!-- SysPayment对应SysUser(缴费审核通过或缴费审核中) -->
+    <select id="getPassOrReviewUserByPayment" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.* from sys_payment sr
+            join sys_user su on sr.user_id = su.id
+        where sr.statu = #{statu}
+    </select>
+
+    <!-- SysPayment对应SysUser(未缴费) -->
+    <select id="getNotUserByPayment" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.*
+        from sys_user su
+            left join sys_payment sr on su.id = sr.user_id
+        where (sr.user_id is null or sr.statu not in (1, 2)) and su.duties = '学生';
+    </select>
+
+    <!-- SysPayment对应SysUser(学院学生缴费审核通过或缴费审核中) -->
+    <select id="getPassOrReviewUserByPaymentInstitute" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.* from sys_payment sr
+            join sys_user su on sr.user_id = su.id
+        where sr.statu = #{statu} and su.institute = #{institute}
+    </select>
+
+    <!-- SysPayment对应SysUser(学院学生未缴费) -->
+    <select id="getNotUserByPaymentInstitute" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.*
+        from sys_user su
+            left join sys_payment sr on su.id = sr.user_id
+        where (sr.user_id is null or sr.statu not in (1, 2)) and su.institute = #{institute} and su.duties = '学生'
+    </select>
+
+    <!-- SysPayment对应SysUser(班级学生缴费审核通过或缴费审核中) -->
+    <select id="getPassOrReviewUserByPaymentClassNumber" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.* from sys_payment sr
+            join sys_user su on sr.user_id = su.id
+        where sr.statu = #{statu} and su.institute = #{institute} and su.class_number = #{classNumber}
+    </select>
+
+    <!-- SysPayment对应SysUser(班级学生未缴费) -->
+    <select id="getNotUserByPaymentClassNumber" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.*
+        from sys_user su
+            left join sys_payment sr on su.id = sr.user_id
+        where (sr.user_id is null or sr.statu not in (1, 2)) and su.institute = #{institute} and su.class_number = #{classNumber} and su.duties = '学生'
+    </select>
+
+
+
+    <!-- SysChannel对应SysUser(绿色通道申请审核通过或绿色通道申请审核中) -->
+    <select id="getPassOrReviewUserByChannel" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.* from sys_channel sr
+            join sys_user su on sr.user_id = su.id
+        where sr.statu = #{statu}
+    </select>
+
+    <!-- SysChannel对应SysUser(未通过绿色通道申请审核) -->
+    <select id="getNotUserByChannel" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.*
+        from sys_user su
+            left join sys_channel sr on su.id = sr.user_id
+        where (sr.user_id is null or sr.statu not in (1, 2)) and su.duties = '学生';
+    </select>
+
+    <!-- SysChannel对应SysUser(学院学生绿色通道申请审核通过或绿色通道申请审核中) -->
+    <select id="getPassOrReviewUserByChannelInstitute" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.* from sys_channel sr
+            join sys_user su on sr.user_id = su.id
+        where sr.statu = #{statu} and su.institute = #{institute}
+    </select>
+
+    <!-- SysChannel对应SysUser(学院学生未通过绿色通道审核) -->
+    <select id="getNotUserByChannelInstitute" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.*
+        from sys_user su
+            left join sys_channel sr on su.id = sr.user_id
+        where (sr.user_id is null or sr.statu not in (1, 2)) and su.institute = #{institute} and su.duties = '学生'
+    </select>
+
+    <!-- SysChannel对应SysUser(班级学生绿色通道申请审核通过或绿色通道申请审核中) -->
+    <select id="getPassOrReviewUserByChannelClassNumber" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.* from sys_channel sr
+            join sys_user su on sr.user_id = su.id
+        where sr.statu = #{statu} and su.institute = #{institute} and su.class_number = #{classNumber}
+    </select>
+
+    <!-- SysChannel对应SysUser(班级学生未通过绿色通道申请) -->
+    <select id="getNotUserByChannelClassNumber" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.*
+        from sys_user su
+            left join sys_channel sr on su.id = sr.user_id
+        where (sr.user_id is null or sr.statu not in (1, 2)) and su.institute = #{institute} and su.class_number = #{classNumber} and su.duties = '学生'
+    </select>
+
+
+    <!-- 根据学院获获取对应的宿舍分配信息 -->
+    <select id="getDormitoryByInstitute" resultType="com.example.sys_newwelcome.entity.SysUser">
+        select distinct su.*
+        from sys_user su
+            join sys_dormitory sr on sr.user_id = su.id
+        where su.institute = #{institute}
+    </select>
+
+
+</mapper>
