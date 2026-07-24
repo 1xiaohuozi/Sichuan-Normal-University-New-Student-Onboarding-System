@@ -1,32 +1,114 @@
-四川师范大学数字迎新服务系统
-本项目仓库有三个分支，vue3.0 为前端项目分支，master 为后端项目分支，doucument 为项目各项文档。
-1. 注入依赖
-npm install
-2. 测试与运行
-npm run serve
-3. 打包
-npm run build
-4. 系统要求
-根据四川师范大学迎新流程，结合网络迎新业务需求，实现迎新前后台管理系统。具体功能描述如下：
+# Sichuan Normal University New Student Onboarding System
 
-4.1 信息发布与查询
-在相关网站上发布相关信息，学生可以查询有关信息。
-4.2 迎新方案配置
-对各类别学生的迎新报到流程及流程内的各报到项目内容进行设置，并可设定报到项目之间的约束关系。
-4.3 事务办理
-院系及各业务处室在数据共享、协同办公的基础上进行各项业务的处理。
-4.4 现场缴费
-供财务完成新生报到现场的缴费手续登记。
-4.5 绿色通道
-对于有经济困难的学生，根据学校规定提供及时、快捷的绿色通道服务。
-4.6 数据统计分析
-学校各级管理部门可以随时查询迎新各项工作的进程，以据此进行决策、调控。
-4.7 监控日志
-提供系统访问日志监控、会话管理、模块运行监视等功能。
-4.8 栏目管理
-对系统栏目进行维护和管理。
-4.9 用户与权限管理
-集成用户数据，并进行分组授权。
-与数字化校园基础支撑平台集成。
-5.优化方法
-前端的优化 图片优化 1、优化图片 2、优化 sprite 3、禁止在HTML中缩放图片 4、用小的且可以缓存的网站图标 css优化 1、将css样式放到顶部 2、避免使用css表达式 3、舍弃@import 4、避免使用过滤器 cookie优化 1、减少cookie的体积、 2、把组件放到不含cookie的域下 服务端优化 1、使用cdn 2、添加expires或者Cache-control头部 3、传输时用zgip压缩 4、配置Etags(实体标记) 5、尽早清空缓冲区 6、对ajax使用get请求 7、避免图片src属性为空 js优化 1、把脚本放在底部 2、使用外部JavaScript和css 3、压缩css和js 4、删除重复脚本 5、尽量减少DOM的访问 6、用智能的事件处理器 移动端优化 1、保持组件小于25k 2、组件打包到一个复合文档中 内容优化 1、减少http请求数 2、减少DNS查询 3、避免重定向 4、让ajax可缓存 5、延迟加载组件 6、预加载组件 7、减少DOM元素的数量 8、把组件分散到不同的域名 9、尽量少用iframe 10、杜绝404
+[English](README.md) | [日本語](README.ja.md) | [简体中文](README.zh-CN.md)
+
+A web-based onboarding service and administration system designed around the new-student registration process at Sichuan Normal University. It supports student-facing onboarding tasks as well as administrative configuration, processing, and progress monitoring.
+
+## Screenshots
+
+| Login | Student onboarding process |
+| --- | --- |
+| <img src="assets/登录页面.png" alt="Login page" width="100%"> | <img src="assets/学生流程页面.png" alt="Student onboarding process" width="100%"> |
+
+| Dormitory selection | Notices |
+| --- | --- |
+| <img src="assets/宿舍选择页面.png" alt="Dormitory selection page" width="100%"> | <img src="assets/公告页面.png" alt="Notice page" width="100%"> |
+
+| Administration | Statistics |
+| --- | --- |
+| <img src="assets/管理员页面.png" alt="Administration page" width="100%"> | <img src="assets/统计页面.png" alt="Statistics page" width="100%"> |
+
+## Features
+
+- Publish onboarding information and allow students to view notices.
+- Configure registration processes and the relationships between onboarding steps.
+- Support cross-department processing of onboarding tasks.
+- Record on-site payment procedures.
+- Provide a green channel for students with financial difficulties.
+- Manage dormitory information and student dormitory selection.
+- Track onboarding progress and generate institute-level statistics.
+- Export selected onboarding data to Excel.
+- Monitor system access logs.
+- Manage menus, users, roles, and permissions.
+- Support CAPTCHA, JWT-based authentication, password recovery, and email verification.
+
+## Technology Stack
+
+### Frontend
+
+- Vue 3
+- npm
+
+### Backend
+
+- Java 8
+- Spring Boot 2.7.0
+- Spring Security and JWT
+- MyBatis-Plus 3.4.1
+- MySQL
+- Redis
+- Swagger 2.9.2
+- EasyExcel
+- Maven
+
+## Repository Structure
+
+```text
+.
+├── assets/                         # Project screenshots
+├── 前端/vueadmin-vue/              # Frontend entry recorded as a Git link
+├── 后端/sys_newwelcome/            # Spring Boot backend
+└── 数据库SQL脚本/adsad2.sql         # Database initialization script
+```
+
+> The current `main` branch records `前端/vueadmin-vue` as a Git link without an available submodule URL. If the directory is empty after cloning, obtain the frontend source before running the npm commands below.
+
+## Getting Started
+
+### Prerequisites
+
+- JDK 8
+- Maven
+- MySQL
+- Redis
+- Node.js and npm for the frontend
+
+### 1. Initialize the database
+
+Create a MySQL database and import:
+
+```text
+数据库SQL脚本/adsad2.sql
+```
+
+The included backend configuration expects a database named `adsad2`. Review the local database, Redis, and email settings before starting the application.
+
+### 2. Run the backend
+
+```bash
+cd 后端/sys_newwelcome
+mvn spring-boot:run
+```
+
+The configured backend port is `8081`.
+
+### 3. Run the frontend
+
+After obtaining the frontend source:
+
+```bash
+cd 前端/vueadmin-vue
+npm install
+npm run serve
+```
+
+Build the frontend for production with:
+
+```bash
+npm run build
+```
+
+## Notes
+
+- This repository contains configuration files intended for local development. Review and replace environment-specific values before deployment.
+- The screenshots under `assets/` document the existing interface.
