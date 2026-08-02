@@ -61,12 +61,12 @@
 ```text
 .
 ├── assets/                         # 项目截图
-├── 前端/vueadmin-vue/              # Vue 前端源码
-├── 后端/sys_newwelcome/            # Spring Boot 后端
-└── 数据库SQL脚本/adsad2.sql         # 数据库初始化脚本
+├── frontend/vueadmin-vue/          # Vue 前端源码
+├── backend/sys_newwelcome/         # Spring Boot 后端
+└── database-sql/adsad2.sql         # 数据库初始化脚本
 ```
 
-前端源码已经直接包含在本仓库中。`dist`、`node_modules`、编辑器配置和嵌套 Git 元数据已被排除，避免上传不必要文件。
+为方便审查者阅读，顶层目录已统一改为英文命名。`dist`、`target`、`node_modules`、编辑器配置和嵌套 Git 元数据已被排除，避免上传不必要文件。
 
 ## 快速开始
 
@@ -83,7 +83,7 @@
 创建 MySQL 数据库并导入：
 
 ```text
-数据库SQL脚本/adsad2.sql
+database-sql/adsad2.sql
 ```
 
 仓库中的后端配置默认使用名为 `adsad2` 的数据库。启动前请根据本地环境检查数据库、Redis 和邮件配置。
@@ -91,7 +91,7 @@
 ### 2. 启动后端
 
 ```bash
-cd 后端/sys_newwelcome
+cd backend/sys_newwelcome
 mvn spring-boot:run
 ```
 
@@ -100,7 +100,7 @@ mvn spring-boot:run
 ### 3. 启动前端
 
 ```bash
-cd 前端/vueadmin-vue
+cd frontend/vueadmin-vue
 npm install
 npm run serve
 ```

@@ -61,12 +61,12 @@ A web-based new student onboarding and administration system designed around the
 ```text
 .
 ├── assets/                         # Project screenshots
-├── 前端/vueadmin-vue/              # Vue frontend source code
-├── 后端/sys_newwelcome/            # Spring Boot backend
-└── 数据库SQL脚本/adsad2.sql         # Database initialization script
+├── frontend/vueadmin-vue/          # Vue frontend source code
+├── backend/sys_newwelcome/         # Spring Boot backend
+└── database-sql/adsad2.sql         # Database initialization script
 ```
 
-The frontend source code is included directly in this repository. Generated folders such as `dist`, dependency folders such as `node_modules`, editor settings, and nested Git metadata are intentionally excluded.
+The repository uses English directory names for easier review. Generated folders such as `dist` and `target`, dependency folders such as `node_modules`, editor settings, and nested Git metadata are intentionally excluded.
 
 ## Getting Started
 
@@ -83,7 +83,7 @@ The frontend source code is included directly in this repository. Generated fold
 Create a MySQL database and import:
 
 ```text
-数据库SQL脚本/adsad2.sql
+database-sql/adsad2.sql
 ```
 
 The included backend configuration expects a database named `adsad2`. Review local database, Redis, and email settings before starting the application.
@@ -91,7 +91,7 @@ The included backend configuration expects a database named `adsad2`. Review loc
 ### 2. Run the backend
 
 ```bash
-cd 后端/sys_newwelcome
+cd backend/sys_newwelcome
 mvn spring-boot:run
 ```
 
@@ -100,7 +100,7 @@ The configured backend port is `8081`.
 ### 3. Run the frontend
 
 ```bash
-cd 前端/vueadmin-vue
+cd frontend/vueadmin-vue
 npm install
 npm run serve
 ```

@@ -61,12 +61,12 @@
 ```text
 .
 ├── assets/                         # 画面スクリーンショット
-├── 前端/vueadmin-vue/              # Vue フロントエンドのソースコード
-├── 后端/sys_newwelcome/            # Spring Boot バックエンド
-└── 数据库SQL脚本/adsad2.sql         # データベース初期化 SQL
+├── frontend/vueadmin-vue/          # Vue フロントエンドのソースコード
+├── backend/sys_newwelcome/         # Spring Boot バックエンド
+└── database-sql/adsad2.sql         # データベース初期化 SQL
 ```
 
-フロントエンドのソースコードはこのリポジトリに直接含まれています。`dist`、`node_modules`、エディタ設定、ネストされた Git メタデータは意図的に除外しています。
+レビューしやすいように、トップレベルのディレクトリ名は英語に統一しています。`dist`、`target`、`node_modules`、エディタ設定、ネストされた Git メタデータは意図的に除外しています。
 
 ## セットアップ
 
@@ -83,7 +83,7 @@
 MySQL データベースを作成し、次の SQL をインポートします。
 
 ```text
-数据库SQL脚本/adsad2.sql
+database-sql/adsad2.sql
 ```
 
 バックエンド設定では `adsad2` というデータベース名が使われています。起動前にローカル環境に合わせてデータベース、Redis、メール設定を確認してください。
@@ -91,7 +91,7 @@ MySQL データベースを作成し、次の SQL をインポートします。
 ### 2. バックエンドの起動
 
 ```bash
-cd 后端/sys_newwelcome
+cd backend/sys_newwelcome
 mvn spring-boot:run
 ```
 
@@ -100,7 +100,7 @@ mvn spring-boot:run
 ### 3. フロントエンドの起動
 
 ```bash
-cd 前端/vueadmin-vue
+cd frontend/vueadmin-vue
 npm install
 npm run serve
 ```

@@ -1,0 +1,48 @@
+{
+  "name": "vueadmin-vue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "better-scroll": "^2.5.1",
+    "chart.js": "^4.4.1",
+    "core-js": "^3.8.3",
+    "crypto-js": "^4.2.0",
+    "element-ui": "^2.15.6",
+    "file-saver": "^2.0.5",
+    "konva": "^9.2.3",
+    "mockjs": "^1.1.0",
+    "moment": "^2.29.4",
+    "qs": "^6.10.3",
+    "sass-loader": "^13.3.2",
+    "tinymce": "^6.8.2",
+    "vue": "^2.6.14",
+    "vue-chartjs": "^5.2.0",
+    "vue-json-excel": "^0.3.0",
+    "vue-lazyload": "^3.0.0",
+    "vue-preview": "^1.1.3",
+    "vue-quill-editor": "^3.0.6",
+    "vue-router": "^3.5.1",
+    "vue-viewer": "^1.0.4",
+    "vue2-viewer": "^1.0.3",
+    "vuex": "^3.6.2",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-plugin-vuex": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "less-loader": "^11.1.3",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
