@@ -1,8 +1,8 @@
 # Sichuan Normal University New Student Onboarding System
 
-[English](README.md) | [日本語](README.ja.md) | [简体中文](README.zh-CN.md)
+[English](README.md) | [日本語](README.ja.md) | [中文](README.zh-CN.md)
 
-A web-based onboarding service and administration system designed around the new-student registration process at Sichuan Normal University. It supports student-facing onboarding tasks as well as administrative configuration, processing, and progress monitoring.
+A web-based new student onboarding and administration system designed around the registration workflow of Sichuan Normal University. The project covers student-facing onboarding tasks, administrative configuration, workflow processing, notices, dormitory selection, payments, green-channel handling, and progress statistics.
 
 ## Screenshots
 
@@ -20,23 +20,28 @@ A web-based onboarding service and administration system designed around the new
 
 ## Features
 
-- Publish onboarding information and allow students to view notices.
-- Configure registration processes and the relationships between onboarding steps.
+- Publish onboarding information and notices for new students.
+- Configure different onboarding workflows and step relationships.
 - Support cross-department processing of onboarding tasks.
 - Record on-site payment procedures.
-- Provide a green channel for students with financial difficulties.
+- Provide green-channel handling for students with financial difficulties.
 - Manage dormitory information and student dormitory selection.
 - Track onboarding progress and generate institute-level statistics.
 - Export selected onboarding data to Excel.
-- Monitor system access logs.
+- Monitor access logs.
 - Manage menus, users, roles, and permissions.
-- Support CAPTCHA, JWT-based authentication, password recovery, and email verification.
+- Support CAPTCHA, JWT authentication, password recovery, and email verification.
 
 ## Technology Stack
 
 ### Frontend
 
-- Vue 3
+- Vue 2.6
+- Vue CLI
+- Vue Router
+- Vuex
+- Element UI
+- Axios
 - npm
 
 ### Backend
@@ -56,12 +61,12 @@ A web-based onboarding service and administration system designed around the new
 ```text
 .
 ├── assets/                         # Project screenshots
-├── 前端/vueadmin-vue/              # Frontend entry recorded as a Git link
+├── 前端/vueadmin-vue/              # Vue frontend source code
 ├── 后端/sys_newwelcome/            # Spring Boot backend
 └── 数据库SQL脚本/adsad2.sql         # Database initialization script
 ```
 
-> The current `main` branch records `前端/vueadmin-vue` as a Git link without an available submodule URL. If the directory is empty after cloning, obtain the frontend source before running the npm commands below.
+The frontend source code is included directly in this repository. Generated folders such as `dist`, dependency folders such as `node_modules`, editor settings, and nested Git metadata are intentionally excluded.
 
 ## Getting Started
 
@@ -71,7 +76,7 @@ A web-based onboarding service and administration system designed around the new
 - Maven
 - MySQL
 - Redis
-- Node.js and npm for the frontend
+- Node.js and npm
 
 ### 1. Initialize the database
 
@@ -81,7 +86,7 @@ Create a MySQL database and import:
 数据库SQL脚本/adsad2.sql
 ```
 
-The included backend configuration expects a database named `adsad2`. Review the local database, Redis, and email settings before starting the application.
+The included backend configuration expects a database named `adsad2`. Review local database, Redis, and email settings before starting the application.
 
 ### 2. Run the backend
 
@@ -94,15 +99,13 @@ The configured backend port is `8081`.
 
 ### 3. Run the frontend
 
-After obtaining the frontend source:
-
 ```bash
 cd 前端/vueadmin-vue
 npm install
 npm run serve
 ```
 
-Build the frontend for production with:
+Build the frontend for production:
 
 ```bash
 npm run build
@@ -110,5 +113,5 @@ npm run build
 
 ## Notes
 
-- This repository contains configuration files intended for local development. Review and replace environment-specific values before deployment.
-- The screenshots under `assets/` document the existing interface.
+- Configuration files are intended for local development. Review and replace environment-specific values before deployment.
+- Screenshots under `assets/` document the current user interface.

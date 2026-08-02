@@ -1,8 +1,8 @@
 # 四川师范大学数字迎新服务系统
 
-[English](README.md) | [日本語](README.ja.md) | [简体中文](README.zh-CN.md)
+[English](README.md) | [日本語](README.ja.md) | [中文](README.zh-CN.md)
 
-这是一个根据四川师范大学新生报到流程开发的 Web 迎新服务与后台管理系统，覆盖学生在线办理、管理人员配置、业务处理和迎新进度统计等场景。
+这是一个基于四川师范大学新生报到流程开发的 Web 迎新服务与后台管理系统，覆盖学生在线办理、管理员配置、业务处理、公告通知、宿舍选择、现场缴费、绿色通道和迎新进度统计等场景。
 
 ## 项目截图
 
@@ -16,7 +16,7 @@
 
 | 管理后台 | 数据统计 |
 | --- | --- |
-| <img src="assets/管理员页面.png" alt="管理员页面" width="100%"> | <img src="assets/统计页面.png" alt="统计页面" width="100%"> |
+| <img src="assets/管理员页面.png" alt="管理后台页面" width="100%"> | <img src="assets/统计页面.png" alt="统计页面" width="100%"> |
 
 ## 主要功能
 
@@ -29,14 +29,19 @@
 - 查询迎新进度并按学院进行数据统计。
 - 将部分迎新数据导出为 Excel。
 - 监控系统访问日志。
-- 管理栏目、用户、角色和权限。
+- 管理菜单、用户、角色和权限。
 - 支持验证码、JWT 身份认证、密码找回和邮件验证。
 
 ## 技术栈
 
 ### 前端
 
-- Vue 3
+- Vue 2.6
+- Vue CLI
+- Vue Router
+- Vuex
+- Element UI
+- Axios
 - npm
 
 ### 后端
@@ -56,12 +61,12 @@
 ```text
 .
 ├── assets/                         # 项目截图
-├── 前端/vueadmin-vue/              # 当前以 Git 链接形式记录的前端入口
+├── 前端/vueadmin-vue/              # Vue 前端源码
 ├── 后端/sys_newwelcome/            # Spring Boot 后端
 └── 数据库SQL脚本/adsad2.sql         # 数据库初始化脚本
 ```
 
-> 当前 `main` 分支中的 `前端/vueadmin-vue` 是一个没有可用子模块地址的 Git 链接。如果克隆后该目录为空，需要先取得前端源码，再执行下面的 npm 命令。
+前端源码已经直接包含在本仓库中。`dist`、`node_modules`、编辑器配置和嵌套 Git 元数据已被排除，避免上传不必要文件。
 
 ## 快速开始
 
@@ -71,7 +76,7 @@
 - Maven
 - MySQL
 - Redis
-- 用于前端的 Node.js 和 npm
+- Node.js 和 npm
 
 ### 1. 初始化数据库
 
@@ -93,8 +98,6 @@ mvn spring-boot:run
 后端配置端口为 `8081`。
 
 ### 3. 启动前端
-
-取得前端源码后执行：
 
 ```bash
 cd 前端/vueadmin-vue
